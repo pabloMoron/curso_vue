@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        {{ text }}
+        <button v-on:click="showName">Mostrar nombre</button>
+    </div>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        //El metodo data regresa una serie de elementos para esta instancia
+        const HelloWorld = {
+            data() {
+                return {
+                    text: 'Hola mundo!'
+                }
+            },
+            methods: {
+                showName () {
+                    console.log('asd');
+                    this.text = 'Me llamo Pablo'
+                }
+            }
+        }
+        const app = Vue.createApp(HelloWorld);
+        const vm = app.mount('#app');
+    </script>
+</body>
+
+</html>

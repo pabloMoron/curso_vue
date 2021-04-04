@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="https://unpk.com/vue@next"></script>
+    <script>
+        const app = Vue.createApp({});
+        
+        //se crea la instancia de la aplicacion
+        //app.component('MyComponent',MyComponent).use(LocalPlugin).component().directive(); //Se pueden concatenar los metodos porque se regresa la misma instancia
+        //app.use(plugins);
+
+        //Regrsa el elemento raiz, se pasa un elemento del DOM => regresa ele elemento desde donde se va a renderizar
+        const vm = app.mount('#app');
+
+    </script>
+</body>
+</html>

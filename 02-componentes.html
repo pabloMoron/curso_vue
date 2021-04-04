@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <di id="app">
+       <like-component></like-component>
+       <like-component></like-component>
+       <like-component></like-component>
+       <like-component></like-component>
+       <like-component></like-component>
+
+    </di>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        const app = Vue.createApp({
+            
+        });
+        app.component('LikeComponent',{
+            template:`
+            {{ count }}
+            <button v-on:click="Increment">Inc</button>
+            <button v-on:click="Decrement">Dec</button>
+            <br>
+
+            `,
+            data () {
+                return {
+                    name: "Pablo Moron",
+                    age: 27,
+                    count:0
+                }
+            },
+            methods:{
+                Increment(){
+                    this.count++;
+                },
+                Decrement(){
+                    this.count--;
+                }
+            }
+        });
+        const vm = app.mount('#app');
+    </script>
+</body>
+</html>

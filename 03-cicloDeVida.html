@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <p>
+            Edad:{{age}}, {{(age>18)? 'Mayor de edad' : 'Menor de edad'}}
+            <!-- Se interpola para manipulas como un js, solo se pueden usar operadores de operacion -->
+        </p>
+        <span v-once>
+            <!-- v-once  -->
+            {{name}}
+        </span>
+
+        <p v-if="show">
+            Uso de 'v-if' => si Verdadero, entonces se muestra
+        </p>
+        <!-- Para bindear un atributo de un objeto de vue se use el binding
+        v-bind:atributo='propiedad' -->
+        <a v-bind:href='url'>Link1</a>
+        <!-- Tambien se pueden bindear las propiedades de manera dinamica
+        desde una variable con el nombre de la propiedad 
+        v-bind:[variable]='propiedad'
+        El contenido entre corchetes no puede ser una expresion compleja
+        (comillas, concatenacion, mayusculas, etc)
+        Solo admite string y null
+        -->
+        <br>
+        <a v-bind:[domprop]='url'>Link2</a>
+        <!-- Se puede usar la directiva v-bind de manera abreviada, sirve para la propiedad directa o como variable [] -->
+        <br>
+        <a :href='url'>Link3</a>
+        <br>
+        <a :[domprop]='url'>Link4</a>
+
+
+        <!-- v-on:evento 
+        en el caso de submit, se puede ahorrar hacer e.preventDefault() en el handler
+        modificando la directiva on agrgando .prevent
+        -->
+        <form v-on:submit.prevent="handleSubmit">
+            <input type="email">
+            <button type="submit">Enviar</button>
+        </form>
+        <!-- Para el caso de v-on la abreviatura es @
+        Tambien se puede utilizar variables para los eventos []
+        -->
+        <form @[event].prevent="handleSubmit">
+            <input type="password">
+            <button type="submit">Send</button>
+        </form>
+
+        <!-- Si se quiere interpolar una expresion html, no se evaluan los tags.
+            Si queremos mostrar contenido html se debe usar la directiva v-html=""
+            Esto no es recomendable porque abre vulnerabilidades xss, esto se soluciona usando plantillas, que se veran más adelante
+        -->
+        <p>{{ htmlElement }}</p>
+        <p v-html="htmlElement"></p>
+    </div>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        const app = Vue.createApp({
+            beforeCreate() {
+                console.log("Before create!");
+                console.log(this.count);
+            },
+            data() {
+                return {
+                    count: 500,
+                    name: "Pelusa",
+                    age: 27,
+                    show: true,
+                    url: 'https://google.com.ar',
+                    domprop: 'href',
+                    event :'submit',
+                    htmlElement: '<p style="color: red;"> HTML</p>',
+                }
+            },
+            methods:{
+                handleSubmit(){//e
+                    //e.preventDefault();
+                    console.log('Submit handled')
+                }
+            },
+            created() {
+                console.log("Created!");
+                console.log(this.count);
+            }
+        });
+        const vm = app.mount("#app");
+    </script>
+</body>
+
+</html>
